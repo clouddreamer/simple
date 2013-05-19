@@ -7,6 +7,7 @@ gem 'bootstrap-sass', '2.1'
 
 group :development do
   gem 'sqlite3', '1.3.5'
+  gem 'annotate', '2.5.0'
 end
 
 # Gems used only for assets and not required
@@ -23,6 +24,9 @@ end
 
 gem 'jquery-rails', '2.0.2'
 
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
+
 group :test do
 gem 'factory_girl_rails', '~>1.4.0'
 end
@@ -31,7 +35,7 @@ group :production do
 end
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
-
+gem 'faker', '1.0.1'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

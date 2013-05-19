@@ -1,0 +1,28 @@
+<a href="<%= user_path(current_user) %>">
+  <%= gravatar_for current_user, size: 52 %>
+</a>
+<h1>
+  <%= current_user.name %>
+</h1>
+<span>
+  <%= link_to "view my profile", current_user %>
+</span>
+<span>
+  <%= pluralize(current_user.microposts.count, "micropost") %>
+  </span>
+
+ <% if current_user.microposts.count >= 1 and current_user.microposts.count <= 4 %>
+ <%= "first blood~~~~~~" %>
+ <% end %>
+
+ <% if current_user.microposts.count >= 5 and current_user.microposts.count <= 9 %>
+<%= "second" %>
+ <% end %>
+ 
+ <% if current_user.microposts.count >= 10 and current_user.microposts.count <= 19 %>
+<%= "third" %>
+<% end %>
+ 
+<% if current_user.microposts.count >= 20 and current_user.microposts.count <= 25 %>
+ <%= "fourth" %>
+<% end %>
