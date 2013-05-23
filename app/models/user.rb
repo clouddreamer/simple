@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :userID
   has_secure_password
   
  has_many :microposts, dependent: :destroy
@@ -26,11 +26,12 @@ class User < ActiveRecord::Base
   before_save :create_remember_token
 
   validates :name, presence: true, length: { maximum: 50}
+  validates :userID, presence: true, format: { with: /[a-zA-Z0-9\-_]/}, length: { minimum: 4,maximum: 20}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,format: { with: VALID_EMAIL_REGEX },
   uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, format: { with: /[a-zA-Z0-9]/},length: { minimum: 4,maximum: 8 }
   validates :password_confirmation, presence: true
 
  def feed
@@ -53,10 +54,23 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
   
+ 
   private
 
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
+
+  class << self
+   def search(nameid)
+    rel = order("created_at")
+   if nameid.present?
+     rel = rel.where("userID LIKE ?","%#{nameid}%")
+   end 
+     rel
+    end
+  end
+
+
 
 end

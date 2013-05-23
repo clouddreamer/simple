@@ -1,0 +1,28 @@
+<% provide(:title, 'All Users') %>
+<h1>ユーザーの</h1>
+
+<%= form_tag :search_users, method: :get do %>
+      <p>
+        <%= text_field_tag "q", params[:q] %>
+        <%= submit_tag "検索" %></p>
+    <% end %>
+  
+
+
+<p><%= link_to "戻る", root_path %></p>
+<%= will_paginate %>
+<ul class="microposts">
+  <% @microposts.each do |micropost| %>
+    <li>
+      <%= link_to gravatar_for(micropost.user), micropost.user %>
+      <%= link_to micropost.user.name,micropost.user %>
+      <%= micropost.content %>
+      <%= time_ago_in_words(micropost.created_at) %> 前
+      
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>
+
+
+

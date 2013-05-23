@@ -5,24 +5,25 @@
   <%= current_user.name %>
 </h1>
 <span>
-  <%= link_to "view my profile", current_user %>
+  <%= link_to "プロフィールを見る", current_user %>
 </span>
 <span>
-  <%= pluralize(current_user.microposts.count, "micropost") %>
+  <%= pluralize(current_user.microposts.count, "メッセージ") %>
   </span>
 
  <% if current_user.microposts.count >= 1 and current_user.microposts.count <= 4 %>
- <%= "first blood~~~~~~" %>
+ <%= link_to "つぶやき初心者", t_path %>
  <% end %>
 
  <% if current_user.microposts.count >= 5 and current_user.microposts.count <= 9 %>
-<%= "second" %>
+<%= link_to "つぶやき半人前", t_path %>
  <% end %>
  
  <% if current_user.microposts.count >= 10 and current_user.microposts.count <= 19 %>
-<%= "third" %>
+<%= link_to "つぶやき一人前", t_path %>
 <% end %>
  
 <% if current_user.microposts.count >= 20 and current_user.microposts.count <= 25 %>
- <%= "fourth" %>
+ <%= link_to "つぶやき達人", t_path %>
 <% end %>
+

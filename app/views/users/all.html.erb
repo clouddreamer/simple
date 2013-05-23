@@ -1,0 +1,19 @@
+<% provide(:title, 'All users') %>
+<h1>ユーザー</h1>
+
+<%= form_tag :search_users, method: :get do %>
+      <p>
+        <%= text_field_tag "q", params[:q] %>
+        <%= submit_tag "ユーザーの検索" %></p>
+    <% end %>
+  
+<p><%= link_to "戻る", root_path %></p>
+  
+
+  <ul class="users">
+    <% @users.each do |user| %>
+    <li>
+      <%= link_to user.userID,user %>
+    </li>
+    <% end %>
+  </ul>

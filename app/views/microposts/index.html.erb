@@ -1,0 +1,22 @@
+<% provide(:title, 'All posts') %>
+<h1>タイムライン</h1>
+
+<%= form_tag :search_microposts, method: :get do %>
+      <p>
+        <%= text_field_tag "q", params[:q] %>
+        <%= submit_tag "タイムラインの検索" %></p>
+    <% end %>
+  
+<p><%= link_to "戻る", root_path %></p>
+  
+
+  <ul class="microposts">
+    <% @microposts.each do |micropost| %>
+    <li>
+      <%= link_to gravatar_for(micropost.user), micropost.user %>
+      <%= link_to micropost.user.name,micropost.user %>
+      <%= micropost.content %>
+      <%= time_ago_in_words(micropost.created_at) %> 前
+    </li>
+    <% end %>
+  </ul>

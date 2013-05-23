@@ -1,27 +1,38 @@
 class UsersController < ApplicationController
 before_filter :signed_in_user,
-                only: [:index, :edit, :update, :destroy, :following, :followers]
+                only: [:index, :edit, :update, :destroy, :following, :followers,
+                  :showall, :search]
   before_filter :correct_user,   only: [:edit, :update]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page],per_page: 10)
   end
 
+ def all
+     @users = User.order("id")
+  end
  
+
+  def search
+    @users = User.search(params[:q])
+    render "all"
+  end
+
   def show
     
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.paginate(page: params[:page],per_page: 10)
   
   end
 
-  # GET /users/new
-  # GET /users/new.json
+def tro
+end
+
+  
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
   end
@@ -29,7 +40,7 @@ before_filter :signed_in_user,
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "ようこそ〜"
       redirect_to @user
     else
       render 'new'
@@ -70,12 +81,12 @@ before_filter :signed_in_user,
     render 'show_follow'
   end
 
-  
+ 
 private
        def signed_in_user
       unless signed_in?
         store_location
-        redirect_to signin_url, notice: "Please sign in."
+        redirect_to signin_url, notice: "サインインしてください！"
       end
     end
 
