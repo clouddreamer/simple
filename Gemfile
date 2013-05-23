@@ -7,14 +7,13 @@ gem 'bootstrap-sass', '2.1'
 
 
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3'
   gem 'annotate', '2.5.0'
 end
 
 group :production do
   gem 'thin'
-  gem 'pg', '0.12.2'
+  gem 'pg'
 end
   
 gem 'activerecord-postgresql-adapter'
