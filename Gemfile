@@ -6,7 +6,6 @@ gem 'bootstrap-sass', '2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -15,7 +14,10 @@ end
 
 group :production do
   gem 'thin'
+  gem 'pg', '0.12.2'
 end
+  
+
 
 gem 'kaminari'
 
@@ -42,9 +44,9 @@ gem 'bootstrap-will_paginate', '0.0.6'
 group :test do
 gem 'factory_girl_rails', '~>1.4.0'
 end
-group :production do
-  gem 'pg', '0.12.2'
-end
+
+
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 gem 'faker', '1.0.1'
